@@ -2,7 +2,6 @@ package model;
 
 import java.sql.Array;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 // An account is a list of transactions
