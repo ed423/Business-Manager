@@ -16,7 +16,7 @@ finances in a simple manner, without having to decrease profits by hiring an emp
 
 ## User Stories
 
-* As a user, I would like to be able to create multiple lists of expenses
-* As a user, I would like to be able to view my list of expenses
-* As a user, I would like to be able to add an expense to one of my list of expenses
+* As a user, I would like to be able to view my last transaction
+* As a user, I would like to be able to add an expense to one of my list of transactions
+* As a user, I would like to be able to remove an expense from my list of expenses
 * As a user, I would like to be able to select a specific expense and view more details about it
