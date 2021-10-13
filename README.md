@@ -14,3 +14,9 @@ a tremendous amount of effort to succeed. As an e-commerce business owner myself
 financial resources is a daunting at times. I would like to have the ability to keep track of the inflow and outflow of 
 finances in a simple manner, without having to decrease profits by hiring an employee to do so.
 
+## User Stories
+
+* As a user, I would like to be able to create multiple lists of expenses
+* As a user, I would like to be able to view my list of expenses
+* As a user, I would like to be able to add an expense to one of my list of expenses
+* As a user, I would like to be able to select a specific expense and view more details about it
