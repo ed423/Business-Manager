@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class AccountTest {
+class TransactionListTest {
 
-    Account testAccount;
+    TransactionList testTransactionList;
     Transaction testTransaction;
 
     @BeforeEach
     public void runBefore() {
-        testAccount = new Account();
+        testTransactionList = new TransactionList();
         testTransaction = new Transaction(1, "a", "b", "c", "d", 100);
     }
 
@@ -62,13 +62,13 @@ class AccountTest {
         Transaction testTransaction;
         testTransaction = new Transaction(1, "a", "a", "a", "a", 10);
 
-        assertEquals(0, testAccount.size());
+        assertEquals(0, testTransactionList.size());
 
-        testAccount.addTransaction(testTransaction);
-        assertEquals(1, testAccount.size());
+        testTransactionList.addTransaction(testTransaction);
+        assertEquals(1, testTransactionList.size());
 
-        testAccount.addTransaction(testTransaction);
-        assertEquals(2, testAccount.size());
+        testTransactionList.addTransaction(testTransaction);
+        assertEquals(2, testTransactionList.size());
 
     }
 
@@ -93,16 +93,16 @@ class AccountTest {
         transaction6 = new Transaction(6, "shipping expense", "me", "John", "a",
                 10.00);
 
-            testAccount.addTransaction(transaction1);
-            testAccount.addTransaction(transaction2);
-            testAccount.addTransaction(transaction3);
-            testAccount.addTransaction(transaction4);
-            testAccount.addTransaction(transaction5);
+            testTransactionList.addTransaction(transaction1);
+            testTransactionList.addTransaction(transaction2);
+            testTransactionList.addTransaction(transaction3);
+            testTransactionList.addTransaction(transaction4);
+            testTransactionList.addTransaction(transaction5);
 
-        assertEquals(5, testAccount.size());
+        assertEquals(5, testTransactionList.size());
 
-        testAccount.addTransaction(transaction6);
-        assertEquals(5, testAccount.size());
+        testTransactionList.addTransaction(transaction6);
+        assertEquals(5, testTransactionList.size());
 
     }
 
@@ -115,12 +115,12 @@ class AccountTest {
         transaction2 = new Transaction(2, "shipping expense", "me", "John", "b",
                 10.00);
 
-        testAccount.addTransaction(transaction1);
-        testAccount.addTransaction(transaction2);
+        testTransactionList.addTransaction(transaction1);
+        testTransactionList.addTransaction(transaction2);
 
-        assertEquals(2, testAccount.size());
-        testAccount.removeTransaction(3);
-        assertEquals(2, testAccount.size());
+        assertEquals(2, testTransactionList.size());
+        testTransactionList.removeTransaction(3);
+        assertEquals(2, testTransactionList.size());
 
 
     }
@@ -134,13 +134,13 @@ class AccountTest {
         transaction2 = new Transaction(2, "shipping expense", "me", "John", "b",
                 10.00);
 
-        testAccount.addTransaction(transaction1);
-        testAccount.addTransaction(transaction2);
+        testTransactionList.addTransaction(transaction1);
+        testTransactionList.addTransaction(transaction2);
 
-        assertEquals(2, testAccount.size());
-        testAccount.removeTransaction(2);
-        assertEquals(1, testAccount.size());
-        assertEquals("Transaction not in account", testAccount.viewTransaction(2));
+        assertEquals(2, testTransactionList.size());
+        testTransactionList.removeTransaction(2);
+        assertEquals(1, testTransactionList.size());
+        assertEquals("Transaction not in transaction list", testTransactionList.viewTransaction(2));
 
     }
 
@@ -153,13 +153,13 @@ class AccountTest {
         transaction2 = new Transaction(2, "shipping expense", "me", "John", "b",
                 10.00);
 
-        testAccount.addTransaction(transaction1);
-        testAccount.addTransaction(transaction2);
+        testTransactionList.addTransaction(transaction1);
+        testTransactionList.addTransaction(transaction2);
 
-        assertEquals(2, testAccount.size());
-        testAccount.removeTransaction(1);
-        assertEquals(1, testAccount.size());
-        assertEquals("Transaction not in account", testAccount.viewTransaction(1));
+        assertEquals(2, testTransactionList.size());
+        testTransactionList.removeTransaction(1);
+        assertEquals(1, testTransactionList.size());
+        assertEquals("Transaction not in transaction list", testTransactionList.viewTransaction(1));
 
     }
 
@@ -175,14 +175,14 @@ class AccountTest {
         transaction3 = new Transaction(3, "shipping expense", "me", "John", "c",
                 10.00);
 
-        testAccount.addTransaction(transaction1);
-        testAccount.addTransaction(transaction2);
-        testAccount.addTransaction(transaction3);
+        testTransactionList.addTransaction(transaction1);
+        testTransactionList.addTransaction(transaction2);
+        testTransactionList.addTransaction(transaction3);
 
-        assertEquals(3, testAccount.size());
-        testAccount.removeTransaction(2);
-        assertEquals(2, testAccount.size());
-        assertEquals("Transaction not in account", testAccount.viewTransaction(2));
+        assertEquals(3, testTransactionList.size());
+        testTransactionList.removeTransaction(2);
+        assertEquals(2, testTransactionList.size());
+        assertEquals("Transaction not in transaction list", testTransactionList.viewTransaction(2));
 
     }
 
@@ -198,13 +198,13 @@ class AccountTest {
         transaction3 = new Transaction(3, "shipping expense", "me", "John", "c",
                 10.00);
 
-        testAccount.addTransaction(transaction1);
-        testAccount.addTransaction(transaction2);
-        testAccount.addTransaction(transaction3);
+        testTransactionList.addTransaction(transaction1);
+        testTransactionList.addTransaction(transaction2);
+        testTransactionList.addTransaction(transaction3);
 
-        assertEquals(3, testAccount.size());
-        testAccount.removeTransaction(4);
-        assertEquals(3, testAccount.size());
+        assertEquals(3, testTransactionList.size());
+        testTransactionList.removeTransaction(4);
+        assertEquals(3, testTransactionList.size());
 
     }
 
@@ -220,11 +220,11 @@ class AccountTest {
         transaction3 = new Transaction(3, "shipping expense", "me", "John", "a",
                 10.00);
 
-        testAccount.addTransaction(transaction1);
-        testAccount.addTransaction(transaction2);
-        testAccount.addTransaction(transaction3);
+        testTransactionList.addTransaction(transaction1);
+        testTransactionList.addTransaction(transaction2);
+        testTransactionList.addTransaction(transaction3);
 
-        assertEquals(testAccount.lastTransaction(), transaction3);
+        assertEquals(testTransactionList.lastTransaction(), transaction3);
     }
 
     @Test
@@ -239,11 +239,11 @@ class AccountTest {
         transaction3 = new Transaction(3, "shipping expense", "me", "John", "c",
                 10.00);
 
-        testAccount.addTransaction(transaction1);
-        testAccount.addTransaction(transaction2);
-        testAccount.addTransaction(transaction3);
+        testTransactionList.addTransaction(transaction1);
+        testTransactionList.addTransaction(transaction2);
+        testTransactionList.addTransaction(transaction3);
 
-        assertEquals("Transaction not in account", testAccount.viewTransaction(4));
+        assertEquals("Transaction not in transaction list", testTransactionList.viewTransaction(4));
     }
 
     @Test
@@ -258,16 +258,16 @@ class AccountTest {
         transaction3 = new Transaction(3, "shipping expense", "me", "John", "c",
                 10.00);
 
-        testAccount.addTransaction(transaction1);
-        testAccount.addTransaction(transaction2);
-        testAccount.addTransaction(transaction3);
+        testTransactionList.addTransaction(transaction1);
+        testTransactionList.addTransaction(transaction2);
+        testTransactionList.addTransaction(transaction3);
 
-        assertEquals("Funds sent from me to John, Amount: 10.0, Details: c", testAccount.viewTransaction(3));
+        assertEquals("Funds sent from me to John, Amount: 10.0, Details: c", testTransactionList.viewTransaction(3));
     }
 
     @Test
     public void testSizeWhenAccountEmpty() {
-        assertEquals(0, testAccount.size());
+        assertEquals(0, testTransactionList.size());
 
     }
 
@@ -283,11 +283,11 @@ class AccountTest {
         transaction3 = new Transaction(3, "shipping expense", "me", "John", "c",
                 10.00);
 
-        testAccount.addTransaction(transaction1);
-        testAccount.addTransaction(transaction2);
-        testAccount.addTransaction(transaction3);
+        testTransactionList.addTransaction(transaction1);
+        testTransactionList.addTransaction(transaction2);
+        testTransactionList.addTransaction(transaction3);
 
-        assertEquals(3, testAccount.size());
+        assertEquals(3, testTransactionList.size());
     }
 
     @Test
@@ -308,12 +308,12 @@ class AccountTest {
         transaction5 = new Transaction(5, "shipping expense", "me", "John", "a",
                 10.00);
 
-        testAccount.addTransaction(transaction1);
-        testAccount.addTransaction(transaction2);
-        testAccount.addTransaction(transaction3);
-        testAccount.addTransaction(transaction4);
-        testAccount.addTransaction(transaction5);
+        testTransactionList.addTransaction(transaction1);
+        testTransactionList.addTransaction(transaction2);
+        testTransactionList.addTransaction(transaction3);
+        testTransactionList.addTransaction(transaction4);
+        testTransactionList.addTransaction(transaction5);
 
-        assertEquals(5, testAccount.size());
+        assertEquals(5, testTransactionList.size());
     }
 }
