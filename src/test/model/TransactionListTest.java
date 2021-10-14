@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TransactionListTest {
 
@@ -282,6 +281,8 @@ class TransactionListTest {
         Transaction transaction3;
         transaction3 = new Transaction(3, "shipping expense", "me", "John", "c",
                 10.00);
+
+        assertEquals(0, testTransactionList.size());
 
         testTransactionList.addTransaction(transaction1);
         testTransactionList.addTransaction(transaction2);

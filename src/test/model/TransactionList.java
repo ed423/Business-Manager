@@ -13,8 +13,8 @@ public class TransactionList {
     }
 
     // MODIFIES: this
-    // EFFECTS: if the transaction list size is less than MAX_NUM_TRANSACTIONS, adds t to transactionList and returns
-    // true, returns false if transactionList size is equal to MAX_NUM_TRANSACTIONS
+    // EFFECTS: if the transaction list size is less than MAX_NUM_TRANSACTIONS, adds t to transactionList, otherwise
+    // does nothing
     public void addTransaction(Transaction t) {
         if (transactionList.size() < MAX_NUM_TRANSACTIONS) {
             transactionList.add(t);
@@ -36,7 +36,7 @@ public class TransactionList {
     // REQUIRES: transaction list must not be empty
     // EFFECTS: returns each sender, receiver, and amount for each transaction in the transaction list
     public Transaction lastTransaction() {
-        return transactionList.get(transactionList.size()-1);
+        return transactionList.get(transactionList.size() - 1);
     }
 
     // EFFECTS: returns the sender, receiver, amount and description of transaction with identifier i, returns a string
@@ -44,7 +44,7 @@ public class TransactionList {
     public String viewTransaction(int i) {
         for (Transaction t : transactionList) {
             if (t.getNumber() == i) {
-                return "Funds sent from " + t.getSender() + " to " +  t.getReceiver() + ", Amount: " +
+                return "Funds sent from " + t.getSender() + " to " + t.getReceiver() + ", Amount: " +
                         t.getAmount() + ", Details: " + t.getDescription();
             }
         }
