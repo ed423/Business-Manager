@@ -47,7 +47,7 @@ public class Transaction {
     }
 
     // EFFECTS: returns amount
-    public double getAmount () {
+    public double getAmount() {
         return amount;
     }
 

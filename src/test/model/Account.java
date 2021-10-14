@@ -1,6 +1,5 @@
 package model;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +47,7 @@ public class Account {
     public String viewTransaction(int i) {
         for (Transaction t : account) {
             if (t.getNumber() == i) {
-                return t.getDescription();
+                return t.getSender() + t.getReceiver() + t.getAmount() + t.getDescription();
             }
         }
         return "Transaction not in account";
