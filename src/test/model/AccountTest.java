@@ -28,6 +28,36 @@ class AccountTest {
     }
 
     @Test
+    public void testGetNumber() {
+        assertEquals(1, testTransaction.getNumber());
+    }
+
+    @Test
+    public void testGetType() {
+        assertEquals("a", testTransaction.getType());
+    }
+
+    @Test
+    public void testGetSender() {
+        assertEquals("b", testTransaction.getSender());
+    }
+
+    @Test
+    public void testGetReceiver() {
+        assertEquals("c", testTransaction.getReceiver());
+    }
+
+    @Test
+    public void testGetDescription() {
+        assertEquals("d", testTransaction.getDescription());
+    }
+
+    @Test
+    public void testGetAmount() {
+        assertEquals(100, testTransaction.getAmount());
+    }
+
+    @Test
     public void testAddTransactionWhenAccountNotFull() {
         Transaction testTransaction;
         testTransaction = new Transaction(1, "a", "a", "a", "a", 10);
