@@ -47,7 +47,8 @@ public class Account {
     public String viewTransaction(int i) {
         for (Transaction t : account) {
             if (t.getNumber() == i) {
-                return t.getSender() + t.getReceiver() + t.getAmount() + t.getDescription();
+                return "Funds sent from " + t.getSender() + " to " +  t.getReceiver() + ", Amount: " +
+                        t.getAmount() + ", Details: " + t.getDescription();
             }
         }
         return "Transaction not in account";

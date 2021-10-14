@@ -9,10 +9,22 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class AccountTest {
 
     Account testAccount;
+    Transaction testTransaction;
 
     @BeforeEach
     public void runBefore() {
         testAccount = new Account();
+        testTransaction = new Transaction(1, "a", "b", "c", "d", 100);
+    }
+
+    @Test
+    public void testTransactionConstructor() {
+        assertEquals(1, testTransaction.getNumber());
+        assertEquals("a", testTransaction.getType());
+        assertEquals("b", testTransaction.getSender());
+        assertEquals("c", testTransaction.getReceiver());
+        assertEquals("d", testTransaction.getDescription());
+        assertEquals(100, testTransaction.getAmount());
     }
 
     @Test
@@ -220,7 +232,7 @@ class AccountTest {
         testAccount.addTransaction(transaction2);
         testAccount.addTransaction(transaction3);
 
-        assertEquals("c", testAccount.viewTransaction(3));
+        assertEquals("Funds sent from me to John, Amount: 10.0, Details: c", testAccount.viewTransaction(3));
     }
 
     @Test
