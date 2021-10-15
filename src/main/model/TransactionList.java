@@ -35,8 +35,10 @@ public class TransactionList {
 
     // REQUIRES: transaction list must not be empty
     // EFFECTS: returns each sender, receiver, and amount for each transaction in the transaction list
-    public Transaction lastTransaction() {
-        return transactionList.get(transactionList.size() - 1);
+    public String lastTransaction() {
+        return "Sender: " + transactionList.get(transactionList.size() - 1).getSender() + ", Receiver: "
+                + transactionList.get(transactionList.size() - 1).getReceiver() + ", Amount: "
+                + transactionList.get(transactionList.size() - 1).getAmount();
     }
 
     // EFFECTS: returns the sender, receiver, amount and description of transaction with identifier i, returns a string

@@ -223,7 +223,7 @@ class TransactionListTest {
         testTransactionList.addTransaction(transaction2);
         testTransactionList.addTransaction(transaction3);
 
-        assertEquals(testTransactionList.lastTransaction(), transaction3);
+        assertEquals("Sender: me, Receiver: John, Amount: 10.0", testTransactionList.lastTransaction());
     }
 
     @Test
