@@ -4,7 +4,7 @@ import model.Transaction;
 import model.TransactionList;
 import java.util.Scanner;
 
-// adapted from the Teller example that was given on edX
+// Adapted functionality and methods from the TellerApp file on edX: https://github.students.cs.ubc.ca/CPSC210/TellerApp
 public class BusinessManagerApp {
     private Transaction transaction;
     private TransactionList transactionList;
@@ -73,7 +73,7 @@ public class BusinessManagerApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: conducts a deposit transaction
+    // EFFECTS: creates a transaction with parameters and adds it to the transaction list
     private void addTransaction() {
         System.out.print("Enter ID of transaction to create:");
         int id = userInput.nextInt();

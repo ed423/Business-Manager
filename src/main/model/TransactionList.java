@@ -13,8 +13,7 @@ public class TransactionList {
     }
 
     // MODIFIES: this
-    // EFFECTS: if the transaction list size is less than MAX_NUM_TRANSACTIONS, adds t to transactionList, otherwise
-    // does nothing
+    // EFFECTS: adds t to the list of transactions if the transaction list size is less than MAX_NUM_TRANSACTIONS
     public void addTransaction(Transaction t) {
         if (transactionList.size() < MAX_NUM_TRANSACTIONS) {
             transactionList.add(t);
@@ -22,8 +21,8 @@ public class TransactionList {
     }
 
     // MODIFIES: this
-    // EFFECTS: removes a transaction from the list with identifier i, if there is no transaction with
-    // identifier i, does not do anything
+    // EFFECTS: if there exists a transaction with identifier i in the transaction list, removes the transaction from
+    // the list
     public void removeTransaction(int i) {
         for (int x = 0; x < transactionList.size(); x++) {
             if (transactionList.get(x).getNumber() == i) {
@@ -33,8 +32,8 @@ public class TransactionList {
         }
     }
 
-    // REQUIRES: transaction list must not be empty
-    // EFFECTS: returns each sender, receiver, and amount for each transaction in the transaction list
+    // EFFECTS: if the transaction list is empty, returns a warning string. Otherwise,
+    // returns the sender, receiver, and amount of the most recently added transaction in the transaction list
     public String lastTransaction() {
         if (transactionList.isEmpty()) {
             return "There are no transactions in the transaction list. Please add a transaction and try again.";
@@ -44,8 +43,8 @@ public class TransactionList {
                 + transactionList.get(transactionList.size() - 1).getAmount();
     }
 
-    // EFFECTS: returns the sender, receiver, amount and description of transaction with identifier i, returns a string
-    // saying "Transaction not in transaction list" if there is no transaction with identifier i in the transaction list
+    // EFFECTS: if there is a transaction with identifier i in the transaction list, returns the sender, receiver,
+    // amount and description of the transaction, otherwise returns a warning string
     public String viewTransaction(int i) {
         for (Transaction t : transactionList) {
             if (t.getNumber() == i) {
@@ -56,7 +55,7 @@ public class TransactionList {
         return "Transaction not in transaction list";
     }
 
-    // EFFECTS: returns the number of transactions in transactionList
+    // EFFECTS: returns the number of transactions in the transaction list
     public int size() {
         return transactionList.size();
     }

@@ -1,6 +1,7 @@
 package model;
 
 // Referred to Teller example given on edX for formatting
+
 // Represents a transaction. A transaction has a type, sender, receiver, description, and dollar amount
 public class Transaction {
     private int number;                     // transaction identifier number, unique for each transaction
@@ -10,7 +11,7 @@ public class Transaction {
     private String description;             // short description of the transaction
     private double amount;                  // dollar amount of the transaction
 
-    // REQUIRES: type, sender and receiver must have non-zero lengths
+    // REQUIRES: type, sender, receiver and description must have non-zero lengths
     // EFFECTS: Transaction has given type, sender, receiver, description and amount
     public Transaction(int num, String type, String sender, String receiver, String description, double amount) {
         this.number = num;
