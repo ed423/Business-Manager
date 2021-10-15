@@ -208,7 +208,13 @@ class TransactionListTest {
     }
 
     @Test
-    public void testLastTransaction() {
+    public void testLastTransactionWhenTransactionListEmpty() {
+        assertEquals("There are no transactions in the transaction list. Please add a transaction and try again.",
+                testTransactionList.lastTransaction());
+    }
+
+    @Test
+    public void testLastTransactionWhenTransactionListNotEmpty() {
         Transaction transaction1;
         transaction1 = new Transaction(1, "shipping expense", "me", "John", "a",
                 10.00);

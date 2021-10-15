@@ -36,6 +36,9 @@ public class TransactionList {
     // REQUIRES: transaction list must not be empty
     // EFFECTS: returns each sender, receiver, and amount for each transaction in the transaction list
     public String lastTransaction() {
+        if (transactionList.isEmpty()) {
+            return "There are no transactions in the transaction list. Please add a transaction and try again.";
+        }
         return "Sender: " + transactionList.get(transactionList.size() - 1).getSender() + ", Receiver: "
                 + transactionList.get(transactionList.size() - 1).getReceiver() + ", Amount: "
                 + transactionList.get(transactionList.size() - 1).getAmount();
