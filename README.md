@@ -17,6 +17,8 @@ finances in a simple manner, without having to decrease profits by hiring an emp
 ## User Stories
 
 * As a user, I would like to be able to view my last transaction
-* As a user, I would like to be able to add an expense to one of my list of transactions
-* As a user, I would like to be able to remove an expense from my list of expenses
+* As a user, I would like to be able to add an expense to my list of transactions
+* As a user, I would like to be able to remove a transaction from my list of transactions
 * As a user, I would like to be able to select a specific expense and view more details about it
+* As a user, I would like to be able to save my list of transactions to a file
+* As a user, I would like to be able to load my list of transactions from a file
