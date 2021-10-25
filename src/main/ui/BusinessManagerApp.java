@@ -2,6 +2,10 @@ package ui;
 
 import model.Transaction;
 import model.TransactionList;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 // Adapted functionality and methods from the TellerApp file on edX: https://github.students.cs.ubc.ca/CPSC210/TellerApp
@@ -9,6 +13,9 @@ public class BusinessManagerApp {
     private Transaction transaction;
     private TransactionList transactionList;
     private Scanner userInput;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private static final String JSON_STORE = "./data/transactionlist.json";
 
     // EFFECTS: runs the business manager application
     public BusinessManagerApp() {
@@ -49,6 +56,8 @@ public class BusinessManagerApp {
             lastTransaction();
         } else if (command.equals("i")) {
             getInfo();
+        } else if (command.equals("v")) {
+            loadTransactionList();
         } else {
             System.out.println("Please try again...");
         }
@@ -60,6 +69,8 @@ public class BusinessManagerApp {
         transactionList = new TransactionList();
         userInput = new Scanner(System.in);
         userInput.useDelimiter("\n");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
     // EFFECTS: displays possible options that the user can choose from
@@ -69,6 +80,7 @@ public class BusinessManagerApp {
         System.out.println("\tr -> Remove a transaction");
         System.out.println("\tl -> Most recent transaction");
         System.out.println("\ti -> More info about a transaction");
+        System.out.println("\tv -> Load transaction list from file");
         System.out.println("\tq -> quit");
     }
 
@@ -117,4 +129,16 @@ public class BusinessManagerApp {
 
         System.out.println("Details: " + transactionList.viewTransaction(x));
     }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadTransactionList() {
+        try {
+            transactionList = jsonReader.read();
+            System.out.println("Loaded transaction list" + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
 }
+

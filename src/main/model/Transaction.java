@@ -2,8 +2,11 @@ package model;
 
 // Referred to Teller example given on edX for formatting
 
+import org.json.JSONObject;
+import persistence.ReturnJson;
+
 // Represents a transaction. A transaction has a type, sender, receiver, description, and dollar amount
-public class Transaction {
+public class Transaction implements ReturnJson {
     private int number;                     // transaction identifier number, unique for each transaction
     private String type;                    // type of transaction, whether it be an expense, revenue etc.
     private String sender;                  // name of sender
@@ -52,4 +55,15 @@ public class Transaction {
         return amount;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("number", number);
+        json.put("category", type);
+        json.put("sender", sender);
+        json.put("receiver", receiver);
+        json.put("description", description);
+        json.put("amount", amount);
+        return json;
+    }
 }

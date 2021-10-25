@@ -1,10 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.ReturnJson;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // A transaction list is a list of transactions
-public class TransactionList {
+public class TransactionList implements ReturnJson {
     private List<Transaction> transactionList;
     public static final int MAX_NUM_TRANSACTIONS = 5;
 
@@ -58,5 +62,23 @@ public class TransactionList {
     // EFFECTS: returns the number of transactions in the transaction list
     public int size() {
         return transactionList.size();
+    }
+
+    // Implementation based on the JsonSerializationDemo example provided on the CPSC210 edX page
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("transactionList", transactionListToJson());
+        return json;
+    }
+
+    private JSONArray transactionListToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Transaction t : transactionList) {
+            jsonArray.put(t.toJson());
+        }
+
+        return jsonArray;
     }
 }
