@@ -41,12 +41,6 @@ public class JsonReader {
 
     // EFFECTS: parses transactionList from JSON object and returns it
     private TransactionList parseTransactionList(JSONObject jsonObject) {
-        Integer number = jsonObject.getInt("number");
-        String type = jsonObject.getString("type");
-        String sender = jsonObject.getString("sender");
-        String receiver = jsonObject.getString("receiver");
-        String description = jsonObject.getString("description");
-        Integer amount = jsonObject.getInt("amount");
         TransactionList tl = new TransactionList();
         addTransactionList(tl, jsonObject);
         return tl;
