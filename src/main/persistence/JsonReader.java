@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 import org.json.*;
-
+// Based on the JsonSerializationDemo example provided on the CPSC210 edX page
 // Represents a reader that reads TransactionList from JSON data stored in file
 public class JsonReader {
     private String source;
