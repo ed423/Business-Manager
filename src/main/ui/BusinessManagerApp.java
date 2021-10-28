@@ -5,6 +5,7 @@ import model.TransactionList;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -58,10 +59,14 @@ public class BusinessManagerApp {
             getInfo();
         } else if (command.equals("v")) {
             loadTransactionList();
+        } else if (command.equals("s")) {
+            saveTransactionList();
         } else {
             System.out.println("Please try again...");
         }
     }
+
+
 
     // MODIFIES: this
     // EFFECTS: initializes the list of transactions
@@ -80,6 +85,7 @@ public class BusinessManagerApp {
         System.out.println("\tr -> Remove a transaction");
         System.out.println("\tl -> Most recent transaction");
         System.out.println("\ti -> More info about a transaction");
+        System.out.println("\ts -> Save transaction list to file");
         System.out.println("\tv -> Load transaction list from file");
         System.out.println("\tq -> quit");
     }
@@ -128,6 +134,18 @@ public class BusinessManagerApp {
         int x = userInput.nextInt();
 
         System.out.println("Details: " + transactionList.viewTransaction(x));
+    }
+
+    // EFFECTS: saves the transaction list to a file
+    private void saveTransactionList() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(transactionList);
+            jsonWriter.close();
+            System.out.println("Saved transaction list" + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
     }
 
     // MODIFIES: this

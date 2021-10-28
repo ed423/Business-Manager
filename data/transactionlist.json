@@ -1,20 +1,8 @@
-{
-  "transactionList": [
-    {
-      "number": 2,
-      "type": "asdfasdf",
-      "sender": "asdfasdf",
-      "receiver": "asdfasdf",
-      "description": "asdfasdfasdf",
-      "amount": 12
-    },
-    {
-      "number": 3,
-      "type": "asdfasdf",
-      "sender": "asdfasdf",
-      "receiver": "asdfasdf",
-      "description": "asdfasdfasdf",
-      "amount": 129
-    }
-  ]
-}
+{"transactionList": [{
+    "number": 2,
+    "amount": 2,
+    "receiver": "e",
+    "sender": "e",
+    "description": "e",
+    "type": "e"
+}]}

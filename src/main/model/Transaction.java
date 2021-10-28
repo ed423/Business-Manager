@@ -59,7 +59,7 @@ public class Transaction implements ReturnJson {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("number", number);
-        json.put("category", type);
+        json.put("type", type);
         json.put("sender", sender);
         json.put("receiver", receiver);
         json.put("description", description);

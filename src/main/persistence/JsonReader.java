@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 import org.json.*;
 // Based on the JsonSerializationDemo example provided on the CPSC210 edX page
 // Represents a reader that reads TransactionList from JSON data stored in file
+
 public class JsonReader {
     private String source;
 
@@ -59,12 +60,12 @@ public class JsonReader {
     // MODIFIES: tl
     // EFFECTS: parses transaction from JSON object and adds it to transactionList
     private void addTransaction(TransactionList tl, JSONObject jsonObject) {
-        Integer number = jsonObject.getInt("number");
+        int number = jsonObject.getInt("number");
         String type = jsonObject.getString("type");
         String sender = jsonObject.getString("sender");
         String receiver = jsonObject.getString("receiver");
         String description = jsonObject.getString("description");
-        Integer amount = jsonObject.getInt("amount");
+        int amount = jsonObject.getInt("amount");
         Transaction transaction = new Transaction(number, type, sender, receiver, description, amount);
         tl.addTransaction(transaction);
     }
