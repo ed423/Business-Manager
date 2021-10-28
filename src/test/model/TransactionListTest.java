@@ -30,6 +30,33 @@ class TransactionListTest {
     }
 
     @Test
+    public void testGetTransaction() {
+        Transaction transaction1;
+        transaction1 = new Transaction(1, "shipping expense", "me", "John", "a",
+                10.00);
+        Transaction transaction2;
+        transaction2 = new Transaction(2, "shipping expense", "me", "John", "a",
+                10.00);
+        Transaction transaction3;
+        transaction3 = new Transaction(3, "shipping expense", "me", "John", "a",
+                10.00);
+        Transaction transaction4;
+        transaction4 = new Transaction(4, "shipping expense", "me", "John", "a",
+                10.00);
+        Transaction transaction5;
+        transaction5 = new Transaction(5, "shipping expense", "me", "John", "a",
+                10.00);
+
+        testTransactionList.addTransaction(transaction1);
+        testTransactionList.addTransaction(transaction2);
+        testTransactionList.addTransaction(transaction3);
+        testTransactionList.addTransaction(transaction4);
+        testTransactionList.addTransaction(transaction5);
+
+        assertEquals(transaction1, testTransactionList.getTransaction(0));
+    }
+
+    @Test
     public void testAddTransactionWhenAccountFull() {
         Transaction transaction1;
         transaction1 = new Transaction(1, "shipping expense", "me", "John", "a",
