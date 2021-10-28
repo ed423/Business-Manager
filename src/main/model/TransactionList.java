@@ -64,6 +64,11 @@ public class TransactionList implements ReturnJson {
         return transactionList.size();
     }
 
+    // EFFECTS: returns the transaction at index i in the list of transactions
+    public Transaction getTransaction(int i) {
+        return transactionList.get(i);
+    }
+
     // Implementation based on the JsonSerializationDemo example provided on the CPSC210 edX page
     @Override
     public JSONObject toJson() {
