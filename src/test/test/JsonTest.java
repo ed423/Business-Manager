@@ -4,6 +4,7 @@ import model.Transaction;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+// tests adapted from JsonSerializationDemo example from the CPSC210 edX page
 public class JsonTest {
     protected void checkTransaction(int number, String type, String sender, String receiver, String description,
                                     int amount, Transaction transaction) {

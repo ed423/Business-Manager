@@ -11,6 +11,7 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+// tests adapted from JsonSerializationDemo example from the CPSC210 edX page
 public class JsonWriterTest extends JsonTest {
 
     @Test
