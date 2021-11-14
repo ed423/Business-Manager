@@ -10,7 +10,7 @@ import java.util.List;
 // A transaction list is a list of transactions
 public class TransactionList implements ReturnJson {
     private List<Transaction> transactionList;
-    public static final int MAX_NUM_TRANSACTIONS = 5;
+    public static final int MAX_NUM_TRANSACTIONS = 100;
 
     public TransactionList() {
         transactionList = new ArrayList<>();

@@ -15,9 +15,7 @@ import java.awt.event.ActionListener;
 //adapted from components-ListDemoProject, an example on docs.oracle.com
 public class BusinessManagerGUI extends JPanel implements ListSelectionListener {
 
-    private JList list;
-    public static final int WIDTH = 1000;
-    public static final int HEIGHT = 800;
+    private final JList list;
     private static final String addString = "Add Transaction";
     private static final String removeString = "Delete Transaction";
     private static final String infoString = "Details";
@@ -37,26 +35,11 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
     private JLabel receiverLabel;
     private JLabel descriptionLabel;
     private JLabel amountLabel;
-    private JLabel infoLabel;
+    protected JLabel infoLabel = new JLabel("No transaction details to show");
     protected JPanel detailsPanel;
 
     protected Transaction transaction;
     protected TransactionList transactionList = new TransactionList();
-
-    //adapted from components-ListDemoProject, an example on docs.oracle.com
-    class TransactionInfoListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            //Method can only be called if there are transactions remaining in the list
-            //Shows more info about selected transaction from the list
-            int index = list.getSelectedIndex();
-            infoLabel = new JLabel(transactionList.viewTransaction(index));
-            detailsPanel.add(infoLabel);
-
-            list.setSelectedIndex(index);
-            list.ensureIndexIsVisible(index);
-        }
-    }
 
     public BusinessManagerGUI() {
         super(new BorderLayout());
@@ -144,6 +127,7 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         detailsPanel.setLayout(new BoxLayout(detailsPanel,
                 BoxLayout.LINE_AXIS));
         detailsPanel.add(infoButton);
+        detailsPanel.add(infoLabel);
 
         add(listScrollPane, BorderLayout.CENTER);
         add(buttonPane, BorderLayout.PAGE_END);
@@ -275,6 +259,22 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
                 //Selection, enable the fire button.
                 removeButton.setEnabled(true);
             }
+        }
+    }
+
+    //clicking the "details" button shows more info about a selected transaction
+    class TransactionInfoListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            //Method can only be called if there are transactions remaining in the list
+            //Shows more info about selected transaction from the list
+            if (list.isSelectionEmpty()) {
+                infoLabel.setText("No transaction details to show");
+            }
+
+            String selected = list.getSelectedValue().toString();
+            int selectedID = Integer.parseInt(selected);
+            infoLabel.setText(transactionList.viewTransaction(selectedID));
         }
     }
 
