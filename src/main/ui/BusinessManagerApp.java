@@ -66,8 +66,6 @@ public class BusinessManagerApp {
         }
     }
 
-
-
     // MODIFIES: this
     // EFFECTS: initializes the list of transactions
     private void start() {
