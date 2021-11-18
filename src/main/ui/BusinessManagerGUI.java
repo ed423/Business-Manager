@@ -82,12 +82,14 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         setUpGUI(listScrollPane, buttonPane);
     }
 
+    // EFFECTS: adds the scroll pane, and two JPanels with buttons and labels
     private void setUpGUI(JScrollPane listScrollPane, JPanel buttonPane) {
         add(listScrollPane, BorderLayout.CENTER);
         add(buttonPane, BorderLayout.PAGE_END);
         add(detailsPanel, BorderLayout.PAGE_START);
     }
 
+    // EFFECTS: creates all the JTextFields and adds action and document listeners to each one respectively
     private void createJTextFields(TransactionAddListener transactionAddListener) {
         transactionNumber = new JTextField(10);
         transactionNumber.addActionListener(transactionAddListener);
@@ -114,6 +116,8 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         transactionAmount.getDocument().addDocumentListener(transactionAddListener);
     }
 
+    // EFFECTS: creates the add transaction, remove transaction, details, save and load buttons and adds action
+    // listeners to each one
     private TransactionAddListener createButtons() {
         addButton = new JButton(addString);
         TransactionAddListener transactionAddListener = new TransactionAddListener(addButton);
@@ -139,6 +143,7 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         return transactionAddListener;
     }
 
+    // EFFECTS: creates labels next to the text fields
     private void createLabelsForTextFields() {
         numberLabel = new JLabel("Number ");
         typeLabel = new JLabel("Type ");
@@ -148,6 +153,8 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         amountLabel = new JLabel("Amount ");
     }
 
+    // EFFECTS: sets up the JPanel that displays more details about a transaction, as well as contains the save and
+    // load buttons
     private void setUpDetailsPanel() {
         detailsPanel = new JPanel();
         detailsPanel.setLayout(new BoxLayout(detailsPanel,
@@ -159,6 +166,8 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         detailsPanel.add(saveLoadLabel);
     }
 
+    // EFFECTS: creates JPanel at the bottom of the page with add transaction/remove transaction buttons, as well as
+    // text fields and labels
     private JPanel createButtonPaneWithTextFields() {
         JPanel buttonPane = new JPanel();
         buttonPane.setLayout(new BoxLayout(buttonPane,
@@ -190,11 +199,14 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         private boolean alreadyEnabled = false;
         private final JButton button;
 
+        // EFFECTS: button to add transaction to list
         public TransactionAddListener(JButton button) {
             this.button = button;
         }
 
-        //Required by ActionListener.
+        // MODIFIES: listModel, this
+        // EFFECTS: acts as a listener for the add transaction button, only adds transaction if the types in the text
+        // fields are correct
         public void actionPerformed(ActionEvent e) {
             String number;
             String type;
@@ -227,33 +239,36 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
             insertTransactionAndMakeVisibleInList(index);
         }
 
+        // EFFECTS: returns true if listModel already contains a transaction number
         protected boolean alreadyInList(String name) {
             return listModel.contains(name);
         }
 
-        //Required by DocumentListener.
+        // EFFECTS: enables button
         public void insertUpdate(DocumentEvent e) {
             enableButton();
         }
 
-        //Required by DocumentListener.
+        // EFFECTS: handles an empty text field
         public void removeUpdate(DocumentEvent e) {
             handleEmptyTextField(e);
         }
 
-        //Required by DocumentListener.
+        // EFFECTS: if text field is not empty, enable button
         public void changedUpdate(DocumentEvent e) {
             if (!handleEmptyTextField(e)) {
                 enableButton();
             }
         }
 
+        // EFFECTS: if button is not already enabled, enable button
         private void enableButton() {
             if (!alreadyEnabled) {
                 button.setEnabled(true);
             }
         }
 
+        // EFFECTS: returns true if text field is 0, and disables button
         private boolean handleEmptyTextField(DocumentEvent e) {
             if (e.getDocument().getLength() <= 0) {
                 button.setEnabled(false);
@@ -264,6 +279,7 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         }
     }
 
+    // EFFECTS: increments index by one
     private int insertIntoList() {
         int index = list.getSelectedIndex(); //get selected index
         if (index == -1) { //no selection, so insert at beginning
@@ -274,6 +290,8 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         return index;
     }
 
+    // EFFECTS: adds transaction to transaction list if all the types are correct in the text fields and if there does
+    // not already exist a transaction with a number that is in the scroll pane list already
     private void addTransactionToListIfPossible(String number, String type, String sender, String receiver,
                                                 String description, String amount) {
         if (!number.isEmpty() && number.matches("[0-9]+") && !type.isEmpty() && !sender.isEmpty()
@@ -287,6 +305,8 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds transaction number to list and resets text fields
     private void insertTransactionAndMakeVisibleInList(int index) {
         listModel.insertElementAt(transactionNumber.getText(), index);
 
@@ -297,8 +317,9 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         list.ensureIndexIsVisible(index);
     }
 
+    // MODIFIES: this
+    // EFFECTS: resets all the text fields
     private void resetTextFields() {
-        //Reset the text field.
         transactionNumber.requestFocusInWindow();
         transactionNumber.setText("");
         transactionType.requestFocusInWindow();
@@ -313,7 +334,9 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         transactionAmount.setText("");
     }
 
-    //This method is required by ListSelectionListener.
+    // MODIFIES: this
+    // EFFECTS: disable remove transaction button if no item in the list is selected in the scroll pane, and enable it
+    // otherwise
     public void valueChanged(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting()) {
 
@@ -325,6 +348,8 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
 
     //clicking the "details" button shows more info about a selected transaction
     class TransactionInfoListener implements ActionListener {
+        // MODIFIES: this
+        // EFFECTS: displays information about the transaction with the selected transaction number in the scroll pane
         @Override
         public void actionPerformed(ActionEvent e) {
             //Method can only be called if there are transactions remaining in the list
@@ -342,6 +367,8 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
 
     //clicking the "details" button shows more info about a selected transaction
     class TransactionSaveListener implements ActionListener {
+        // MODIFIES: this
+        // EFFECTS: saves transaction list to file as JSON data
         @Override
         public void actionPerformed(ActionEvent e) {
             //Saves transaction list to file
@@ -357,8 +384,11 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         }
     }
 
-    //clicking the "details" button shows more info about a selected transaction
+
     class TransactionLoadListener implements ActionListener {
+        // MODIFIES: this
+        // EFFECTS: acts as a listener for a button that loads a transaction list from JSON data to the transaction
+        // list, and adds each transaction number from each transaction to the list in the scroll pane
         @Override
         public void actionPerformed(ActionEvent e) {
             //Loads transaction list from file
@@ -387,8 +417,10 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         }
     }
 
-    //adapted from components-ListDemoProject, an example on docs.oracle.com
     class TransactionRemoveListener implements ActionListener {
+        // MODIFIES: this
+        // EFFECTS: acts as a listener for a button that removes a transaction from transaction list, and removes
+        // identifier from the list in the scroll pane
         @Override
         public void actionPerformed(ActionEvent e) {
             //Method can only be called if there are transactions remaining in the list
@@ -417,8 +449,8 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         }
     }
 
+    // EFFECTS: creates and shows the gui application
     private static void createAndShowGUI() {
-        //Create and set up the window.
         JFrame frame = new JFrame("Business Manager");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
