@@ -222,8 +222,6 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
             description = transactionDescription.getText();
             amount = transactionAmount.getText();
 
-            addTransactionToListIfPossible(number, type, sender, receiver, description, amount);
-
             //User didn't type in a unique name...
             if (number.equals("") || alreadyInList(number) || !number.matches("[0-9]+")
                     || !amount.matches("[0-9]+") || type.isEmpty() || sender.isEmpty() || receiver.isEmpty()
@@ -234,12 +232,14 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
                 return;
             }
 
+            addTransactionToListIfPossible(number, type, sender, receiver, description, amount);
+
             int index = insertIntoList();
 
             insertTransactionAndMakeVisibleInList(index);
         }
 
-        // EFFECTS: returns true if listModel already contains a transaction number
+        // EFFECTS: returns true if listModel already contains tbe given transaction number in the text field
         protected boolean alreadyInList(String name) {
             return listModel.contains(name);
         }
@@ -294,7 +294,7 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
     // not already exist a transaction with a number that is in the scroll pane list already
     private void addTransactionToListIfPossible(String number, String type, String sender, String receiver,
                                                 String description, String amount) {
-        if (!number.isEmpty() && number.matches("[0-9]+") && !type.isEmpty() && !sender.isEmpty()
+        if (!number.isEmpty() && number.matches("[0-9]+") || !type.isEmpty() && !sender.isEmpty()
                 && !receiver.isEmpty() && !description.isEmpty() && !amount.isEmpty()
                 && amount.matches("[0-9]+")) {
             transaction = new Transaction(Integer.parseInt(String.valueOf(transactionNumber.getText())),
@@ -378,6 +378,7 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
                 jsonWriter.write(transactionList);
                 jsonWriter.close();
                 saveLoadLabel.setText("Saved transaction list" + " to " + JSON_STORE);
+                listModel.removeAllElements();
             } catch (FileNotFoundException f) {
                 saveLoadLabel.setText("Unable to write to file: " + JSON_STORE);
             }
@@ -393,9 +394,9 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         public void actionPerformed(ActionEvent e) {
             //Loads transaction list from file
             try {
+                listModel.removeAllElements();
                 jsonReader = new JsonReader(JSON_STORE);
                 transactionList = jsonReader.read();
-                listModel.removeAllElements();
                 for (int i = 0; i < transactionList.size(); i++) {
                     listModel.addElement(transactionList.getTransaction(i).getNumber());
                 }

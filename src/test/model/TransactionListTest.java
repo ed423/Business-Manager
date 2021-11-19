@@ -18,14 +18,20 @@ class TransactionListTest {
     public void testAddTransactionWhenAccountNotFull() {
         Transaction testTransaction;
         testTransaction = new Transaction(1, "a", "a", "a", "a", 10);
+        Transaction testTransaction2 = new Transaction
+                (2, "asdf", "sa", "Asdf", "asd", 2);
 
         assertEquals(0, testTransactionList.size());
 
         testTransactionList.addTransaction(testTransaction);
         assertEquals(1, testTransactionList.size());
 
+        testTransactionList.addTransaction(testTransaction2);
+        assertEquals(2, testTransactionList.size());
+
         testTransactionList.addTransaction(testTransaction);
         assertEquals(2, testTransactionList.size());
+
 
     }
 
