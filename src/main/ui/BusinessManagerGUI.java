@@ -17,8 +17,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
 
-//adapted from components-ListDemoProject, an example on docs.oracle.com. Linked below:
-//https://docs.oracle.com/javase/tutorial/uiswing/examples/components/ListDemoProject/src/components/ListDemo.java
+// adapted from components-ListDemoProject, an example on docs.oracle.com. Linked below:
+// https://docs.oracle.com/javase/tutorial/uiswing/examples/components/ListDemoProject/src/components/ListDemo.java
+// Business Manager GUI class
 public class BusinessManagerGUI extends JPanel implements ListSelectionListener {
 
     private final JList list;
@@ -193,8 +194,9 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         return buttonPane;
     }
 
-    //Adapted from components-ListDemoProject, an example on docs.oracle.com,
-    //this listener is shared by the text field and the hire button.
+    // adapted from components-ListDemoProject, an example on docs.oracle.com. Linked below:
+    // https://docs.oracle.com/javase/tutorial/uiswing/examples/components/ListDemoProject/src/components/ListDemo.java
+    // this listener is shared by the text field and the add transaction button.
     class TransactionAddListener implements ActionListener, DocumentListener {
         private boolean alreadyEnabled = false;
         private final JButton button;
@@ -346,7 +348,7 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         }
     }
 
-    //clicking the "details" button shows more info about a selected transaction
+    // clicking the "details" button shows more info about a selected transaction
     class TransactionInfoListener implements ActionListener {
         // MODIFIES: this
         // EFFECTS: displays information about the transaction with the selected transaction number in the scroll pane
@@ -365,7 +367,7 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         }
     }
 
-    //clicking the "details" button shows more info about a selected transaction
+    // clicking the "details" button shows more info about a selected transaction
     class TransactionSaveListener implements ActionListener {
         // MODIFIES: this
         // EFFECTS: saves transaction list to file as JSON data
@@ -385,7 +387,7 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         }
     }
 
-
+// clicking the load button loads a transaction list from file if it exists
     class TransactionLoadListener implements ActionListener {
         // MODIFIES: this
         // EFFECTS: acts as a listener for a button that loads a transaction list from JSON data to the transaction
@@ -418,6 +420,9 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         }
     }
 
+    // adapted from components-ListDemoProject, an example on docs.oracle.com. Linked below:
+    // https://docs.oracle.com/javase/tutorial/uiswing/examples/components/ListDemoProject/src/components/ListDemo.java
+    // clicking the "Remove Transaction" button removes transaction from list
     class TransactionRemoveListener implements ActionListener {
         // MODIFIES: this
         // EFFECTS: acts as a listener for a button that removes a transaction from transaction list, and removes
@@ -465,6 +470,7 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         frame.setVisible(true);
     }
 
+    // EFFECTS: creates and shows the GUI, this is the main method
     public static void main(String[] args) {
         createAndShowGUI();
     }

@@ -66,4 +66,9 @@ public class Transaction implements ReturnJson {
         json.put("amount", amount);
         return json;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(this.number);
+    }
 }
