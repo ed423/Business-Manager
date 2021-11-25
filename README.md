@@ -34,3 +34,9 @@ Thu Nov 25 09:57:03 PST 2021
 Loaded transaction list from file.
 Thu Nov 25 09:57:05 PST 2021
 Returned more details about the transaction.
+
+Phase 4: Task 3:
+Aspects to improve on if I had more time:
+- Extract some, or most of the classes in my GUI class into separate classes in the ui package, in order to make the GUI
+- functionality easier to understand. 
+- 
