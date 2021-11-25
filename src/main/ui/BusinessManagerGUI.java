@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Transaction;
 import model.TransactionList;
 import persistence.JsonReader;
@@ -197,7 +199,7 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
     // adapted from components-ListDemoProject, an example on docs.oracle.com. Linked below:
     // https://docs.oracle.com/javase/tutorial/uiswing/examples/components/ListDemoProject/src/components/ListDemo.java
     // this listener is shared by the text field and the add transaction button.
-    class TransactionAddListener implements ActionListener, DocumentListener {
+    private class TransactionAddListener implements ActionListener, DocumentListener {
         private boolean alreadyEnabled = false;
         private final JButton button;
 
@@ -349,7 +351,7 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
     }
 
     // clicking the "details" button shows more info about a selected transaction
-    class TransactionInfoListener implements ActionListener {
+    private class TransactionInfoListener implements ActionListener {
         // MODIFIES: this
         // EFFECTS: displays information about the transaction with the selected transaction number in the scroll pane
         @Override
@@ -368,7 +370,7 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
     }
 
     // clicking the "details" button shows more info about a selected transaction
-    class TransactionSaveListener implements ActionListener {
+    private class TransactionSaveListener implements ActionListener {
         // MODIFIES: this
         // EFFECTS: saves transaction list to file as JSON data
         @Override
@@ -383,12 +385,15 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
                 listModel.removeAllElements();
             } catch (FileNotFoundException f) {
                 saveLoadLabel.setText("Unable to write to file: " + JSON_STORE);
+            } finally {
+                EventLog.getInstance().logEvent(new Event("Saved transaction list to file and removed all "
+                        + "transactions from transaction list."));
             }
         }
     }
 
-// clicking the load button loads a transaction list from file if it exists
-    class TransactionLoadListener implements ActionListener {
+    // clicking the load button loads a transaction list from file if it exists
+    private class TransactionLoadListener implements ActionListener {
         // MODIFIES: this
         // EFFECTS: acts as a listener for a button that loads a transaction list from JSON data to the transaction
         // list, and adds each transaction number from each transaction to the list in the scroll pane
@@ -416,6 +421,8 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
 
             } catch (IOException f) {
                 saveLoadLabel.setText("Unable to read from file: " + JSON_STORE);
+            } finally {
+                EventLog.getInstance().logEvent(new Event("Loaded transaction list from file."));
             }
         }
     }
@@ -423,7 +430,7 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
     // adapted from components-ListDemoProject, an example on docs.oracle.com. Linked below:
     // https://docs.oracle.com/javase/tutorial/uiswing/examples/components/ListDemoProject/src/components/ListDemo.java
     // clicking the "Remove Transaction" button removes transaction from list
-    class TransactionRemoveListener implements ActionListener {
+    private class TransactionRemoveListener implements ActionListener {
         // MODIFIES: this
         // EFFECTS: acts as a listener for a button that removes a transaction from transaction list, and removes
         // identifier from the list in the scroll pane
@@ -458,7 +465,7 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
     // EFFECTS: creates and shows the gui application
     private static void createAndShowGUI() {
         JFrame frame = new JFrame("Business Manager");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         //Create and set up the content pane.
         JComponent newContentPane = new BusinessManagerGUI();
@@ -468,6 +475,19 @@ public class BusinessManagerGUI extends JPanel implements ListSelectionListener 
         //Display the window.
         frame.pack();
         frame.setVisible(true);
+
+        // adapted from StackOverflow,
+        // link: https://stackoverflow.com/questions/60516720/java-how-to-print-message-when-a-jframe-is-closed
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                for (Event e : EventLog.getInstance()) {
+                    System.out.println(e);
+                }
+                System.exit(0);
+                EventLog.getInstance().clear();
+            }
+        });
     }
 
     // EFFECTS: creates and shows the GUI, this is the main method

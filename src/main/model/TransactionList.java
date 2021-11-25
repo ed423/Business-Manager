@@ -21,6 +21,7 @@ public class TransactionList implements ReturnJson {
     public void addTransaction(Transaction t) {
         if (transactionList.size() < MAX_NUM_TRANSACTIONS && !transactionList.contains(t)) {
             transactionList.add(t);
+            EventLog.getInstance().logEvent(new Event("Transaction added to transaction list."));
         }
     }
 
@@ -31,6 +32,7 @@ public class TransactionList implements ReturnJson {
         for (int x = 0; x < transactionList.size(); x++) {
             if (transactionList.get(x).getNumber() == i) {
                 transactionList.remove(x);
+                EventLog.getInstance().logEvent(new Event("Transaction removed from transaction list."));
                 break;
             }
         }
@@ -40,8 +42,11 @@ public class TransactionList implements ReturnJson {
     // returns the sender, receiver, and amount of the most recently added transaction in the transaction list
     public String lastTransaction() {
         if (transactionList.isEmpty()) {
+            EventLog.getInstance().logEvent(new Event("Attempted to return last transaction in "
+                    + "transaction list."));
             return "There are no transactions in the transaction list. Please add a transaction and try again.";
         }
+        EventLog.getInstance().logEvent(new Event("Returned last transaction in transaction list."));
         return "Sender: " + transactionList.get(transactionList.size() - 1).getSender() + ", Receiver: "
                 + transactionList.get(transactionList.size() - 1).getReceiver() + ", Amount: "
                 + transactionList.get(transactionList.size() - 1).getAmount();
@@ -52,10 +57,12 @@ public class TransactionList implements ReturnJson {
     public String viewTransaction(int i) {
         for (Transaction t : transactionList) {
             if (t.getNumber() == i) {
+                EventLog.getInstance().logEvent(new Event("Returned more details about the transaction."));
                 return "Funds sent from " + t.getSender() + " to " + t.getReceiver() + ", Amount: "
                         + t.getAmount() + ", Details: " + t.getDescription();
             }
         }
+        EventLog.getInstance().logEvent(new Event("Attempted to return more details about the transaction."));
         return "Transaction not in transaction list";
     }
 

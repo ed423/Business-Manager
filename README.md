@@ -22,3 +22,15 @@ finances in a simple manner, without having to decrease profits by hiring an emp
 * As a user, I would like to be able to select a specific expense and view more details about it
 * As a user, I would like to be able to save my list of transactions to a file
 * As a user, I would like to be able to load my list of transactions from a file
+
+Phase 4: Task 2:
+Thu Nov 25 09:57:00 PST 2021
+Transaction added to transaction list.
+Thu Nov 25 09:57:01 PST 2021
+Saved transaction list to file and removed all transactions from transaction list.
+Thu Nov 25 09:57:03 PST 2021
+Transaction added to transaction list.
+Thu Nov 25 09:57:03 PST 2021
+Loaded transaction list from file.
+Thu Nov 25 09:57:05 PST 2021
+Returned more details about the transaction.
