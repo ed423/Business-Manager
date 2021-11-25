@@ -39,4 +39,6 @@ Phase 4: Task 3:
 Aspects to improve on if I had more time:
 - Extract some, or most of the classes in my GUI class into separate classes in the ui package, in order to make the GUI
 - functionality easier to understand. 
-- 
+- Create a superclass, either an abstract class or an interface, to reduce duplication in my classes. An example of a 
+location in which I can implement these changes is in my button listener classes. I could create a superclass, and then
+override the methods in order to achieve the correct functionality for each button listener.
