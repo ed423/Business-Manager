@@ -23,7 +23,7 @@ finances in a simple manner, without having to decrease profits by hiring an emp
 * As a user, I would like to be able to save my list of transactions to a file
 * As a user, I would like to be able to load my list of transactions from a file
 
-## Phase 4: Task 2:
+## Examples of log messages:
 Thu Nov 25 09:57:00 PST 2021
 
 Transaction added to transaction list.
@@ -44,8 +44,7 @@ Thu Nov 25 09:57:05 PST 2021
 
 Returned more details about the transaction.
 
-## Phase 4: Task 3:
-Aspects to improve on if I had more time:
+## Aspects to improve on if I had more time:
 - Extract some, or most of the classes in my GUI class into separate classes in the ui package, in order to make the GUI
 - functionality easier to understand. 
 - Create a superclass, either an abstract class or an interface, to reduce duplication in my classes. An example of a 
