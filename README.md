@@ -1,4 +1,4 @@
-# E-Commerce Business Expense Tracker (Personal Project)
+# E-Commerce Business Expense Tracker
 
 ## Project Summary
 
